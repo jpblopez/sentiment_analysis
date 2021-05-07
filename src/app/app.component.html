@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="title">
+    Sentiment Analysis
+  </h1>
+  <textarea name="sentence" id="textarea" resizable="false" placeholder="Enter your sentence here" [(ngModel)]="sentence"></textarea>
+  <button id="submit" (click)="submit()">Submit</button>
+  <div id="results" [class.show]="results != undefined">
+    <h1 class="title">
+      Results
+    </h1>
+    <div>The sentence is <b>{{ getResult() }}</b></div>
+    <div id="bars">
+      <div id="green" [ngStyle]="getGreen()">
+        Positive: {{ getGreen().width }}
+      </div>
+      <div id="gray" [ngStyle]="getGray()">
+        Neutral: {{ getGray().width }}
+      </div>
+      <div id="red" [ngStyle]="getRed()">
+        Negative: {{ getRed().width }}
+      </div>
+    </div>
+    <div id="stats">
+        Positive: {{ (results?.pos * 100).toFixed(2) + '%' }}<br>
+        Neutral: {{ (results?.neu * 100).toFixed(2) + '%' }}<br>
+        Negative: {{ (results?.neg * 100).toFixed(2) + '%' }}
+    </div>
+  </div>
+</div>
