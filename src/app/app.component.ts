@@ -10,16 +10,21 @@ import data from './ISentiment';
 export class AppComponent {
   constructor(private http: HttpClient) {}
 
-  sentence: String;
+  sentence: string;
   results: data = undefined;
+  loading: boolean = false;
 
   submit() {
+    this.loading = true;
+    this.results = undefined;
+
     this.http
       .post('http://localhost:8000/api/sentiment', {
         sentence: this.sentence,
       })
       .subscribe((res) => {
         this.results = res as data;
+        this.loading = false;
       });
   }
 
@@ -60,7 +65,7 @@ export class AppComponent {
       const x = Object.keys(this.results).filter(
         (item) => this.results[item] == max
       )[0];
-      
+
       return map[x] || 'None';
     }
   }

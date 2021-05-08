@@ -4,6 +4,7 @@
   </h1>
   <textarea name="sentence" id="textarea" resizable="false" placeholder="Enter your sentence here" [(ngModel)]="sentence"></textarea>
   <button id="submit" (click)="submit()">Submit</button>
+  <div class="title" style="margin-top: 1rem" [ngStyle]="{'display': loading ? 'block' : 'none' }">Loading</div>
   <div id="results" [class.show]="results != undefined">
     <h1 class="title">
       Results
